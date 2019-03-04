@@ -23,10 +23,19 @@
 //
 //
 // I'm just going to add some commentary
+// Adding an extra Comment
+// removal is not a good idea
+// Change for collaborator review
+// Additional Change
+//
+// Change for changes sake
+// To demonstrate code review
+
+=======
 
 //Collab changes
 // This is a new branch for collaborator work
-
+// Comment comment
 
 var express = require('express')
   , routes = require('./routes')
@@ -35,6 +44,7 @@ var express = require('express')
   , path = require('path')
   , EmployeeProvider = require('./employeeprovider').EmployeeProvider;
 //Rudy's comment
+// remove
 var app = express();
 // changed and changed back
 app.configure(function(){
@@ -72,6 +82,8 @@ app.get('/', function(req, res){
   });
 });
 
+// New Comment
+
 //new employee
 app.get('/employee/new', function(req, res) {
     res.render('employee_new', {
@@ -89,6 +101,7 @@ app.post('/employee/new', function(req, res){
     });
 });
 
+// Hello world
 //update an employee
 app.get('/employee/:id/edit', function(req, res) {
 	employeeProvider.findById(req.param('_id'), function(error, employee) {
