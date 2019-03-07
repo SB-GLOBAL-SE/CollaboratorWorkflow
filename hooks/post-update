@@ -1,0 +1,19 @@
+#!/bin/bash
+#
+# This hook gets called with the refs that were updated after a push.
+# We clean up (delete) any refs with the review ref naming convention so that
+# if another user tries to push to them they won't get a "non-fast-forward"
+# warning.
+#
+# Note this is not perfect - if two users try to add a commit to a Review by
+# pushing to e.g. "refs/for/master" concurrently the second one may still get
+# this warning.  In that case they can override the warning by supplying the
+# "--force" option to "git push", or they can simply wait a little while and
+# then try again.
+#
+for ref in "$@"
+do
+    if [[ "$ref" == refs/for/* ]]; then
+        git update-ref -d "$ref"
+    fi
+done
