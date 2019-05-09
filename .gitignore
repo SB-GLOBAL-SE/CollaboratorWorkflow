@@ -61,4 +61,6 @@ typings/
 .next
 
 # Swap  files
-# .swp
+.swp
+# Visual Studio Project Directory
+.vs/
