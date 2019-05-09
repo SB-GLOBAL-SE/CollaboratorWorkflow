@@ -1,0 +1,140 @@
+#!/bin/bash                                                                  
+
+# Read input args
+ref_name="$1"                                                                  
+old_rev="$2"                                                                   
+new_rev="$3"
+
+# Try to parse target branch name based on Gerrit's naming convention "refs/for/<target>"
+target_branch=`echo $ref_name | sed 's_^refs/for/\(.*\)$_\1_'`
+if [ "$ref_name" = "$target_branch" ]; then
+
+    # Require review to push to "master" branch - if desired you can add more branches here
+    if [ "$ref_name" = "refs/heads/master" ]; then
+
+        # Load commits out of Git - you can tweak this command to exclude certain commits...
+        # Note appending "-- ''" excludes commits with no file changes, since those can't
+        # be uploaded to Collaborator anyway
+        commits=`git rev-list $old_rev..$new_rev -- ''`
+
+        for commit in $commits
+        do                                                                            
+	    ccollab --scm git admin trigger ensure-reviewed $commit                
+	    exit_code=$(($exit_code + $?))                                              
+        done                                                                          
+        exit $exit_code
+     
+    fi
+
+    exit 0
+fi
+
+# Branch matches naming convention - review it!
+
+# Test if deleting branch
+if [ "$new_rev" = "0000000000000000000000000000000000000000" ]; then
+    #always allow
+    exit 0;
+fi
+
+# Verify commit is not empty (e.g. a fast-forward merge)
+if test -z "`git ls-tree --name-only -r $new_rev`"; then
+    echo "Can't review empty commits"
+    exit 1;
+fi
+
+# Parse commit message for Change-Id (copied from Gerrit's commit-msg hook)
+message=`git log -n 1 --format=format:%B $new_rev`
+change_id_line=`echo "$message" | sed -e '
+	/^diff --git a\/.*/{
+		s///
+		q
+	}
+	/^Signed-off-by:/d
+	/^#/d
+' | git stripspace | grep "^Change-Id:"`
+change_id=`echo $change_id_line | sed 's_^Change-Id: \(.*\)$_\1_'` || exit 1
+if [ "$change_id_line" = "$change_id" ]; then
+
+    # No Change-Id in commit message - error and prompt user to install Gerrit's hook that generates it
+    echo "Error - no Change-Id in commit!"
+    echo "Install Gerrit's commit-msg hook by running:"
+    echo
+    echo "curl -o <local path to your Git>/.git/hooks/commit-msg https://android-review.googlesource.com/tools/hooks/commit-msg"
+    echo "chmod 755 <local path to your Git>/.git/hooks/commit-msg"
+    echo
+    echo "Then run \"git commit --amend\" to add the Change-Id to this commit "
+    echo "and then try to push again.  Future commits will have the Change-Id "
+    echo "added automatically."
+    exit 1
+
+fi
+
+# Look for Change-Id ref
+git show-ref --quiet --verify "refs/collab/change-id-$change_id"
+if [[ $? != 0 ]]; then
+
+    # Change-Id ref does not exist - create new Review
+    review_id="new"
+
+else
+
+    # Find matching Review ref, parse out Review ID
+    review_ref=`git name-rev --name-only --no-undefined --refs "refs/collab/review-*" "refs/collab/change-id-$change_id"` || exit 1
+    review_id=`echo $review_ref | sed 's_^collab/review-\([0-9]*\)_\1_'` || exit 1
+
+fi
+
+
+# We'll be invoking the "ccollab" Collaborator client executable.  Set up options:
+ccollab="ccollab" # the executable - usually installer adds it to PATH but if not add that here
+ccollab="$ccollab --non-interactive" # don't prompt for e.g. passwords
+ccollab="$ccollab --no-browser"      # don't try to open web browser
+
+# Note if desired you could supply the server URL and credentials here (instead of 
+# saving them in the local config file):
+#
+#ccollab="$ccollab --url http://your-collab-server"
+#ccollab="$ccollab --user git-trigger"
+#ccollab="$ccollab --password <git-trigger's password>"
+
+# Create Review if necessary, add commit to Review, return Review ID, fail on error
+review_id=$($ccollab --quiet admin batch - <<ccollabBatchXml
+    <batch-commands>
+
+        <!-- Add Commit to Review -->
+        <addchangelist>
+
+            <!-- Specify Review ID to add to, or "new" to create new Review -->
+            <review>$review_id</review>
+
+            <changelist>$new_rev</changelist>
+
+        </addchangelist>
+
+        <!-- Output Review ID, in case we created a new one -->
+        <admin_review-xml>
+
+            <!-- "last" means the Review we referenced/created with the addchangelist command. -->
+            <!-- Note we have to do this in the same "ccollab admin batch" script to ensure    -->
+            <!-- the "last" variable does not get overrwritten by a concurrent process.        -->
+            <review>last</review>
+
+            <!-- Output just the Review ID -->
+            <xpath>string(//reviews/review/@reviewId)</xpath>
+
+        </admin_review-xml>
+
+    </batch-commands>
+ccollabBatchXml
+    ) || exit 1 #fail on error
+
+# Save Change-Id, Review ID, and target branch as a refs - will be used and then
+# cleaned up by Collaborator review-complete trigger script
+git update-ref "refs/collab/change-id-$change_id" "$new_rev"         > /dev/null || exit 1
+git update-ref "refs/collab/review-$review_id" "$new_rev"            > /dev/null || exit 1
+git update-ref "refs/collab/review-${review_id}-target-branch-$target_branch" "$new_rev" > /dev/null || exit 1
+
+# Print message telling developer what to do next
+collab_url=`$ccollab set | grep '^url' | sed 's_^url = \(.*\)$_\1_'`
+echo "Commit uploaded to Collaborator - go to ${collab_url}/ui#review:id=$review_id to complete the Review" 
