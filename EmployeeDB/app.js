@@ -15,9 +15,20 @@
 // addressing defect
 // Additional comment here implemented a fix - here and here
 //
+<<<<<<< .mine
+||||||| .r83
+// asdfasdfasdfasdffasdfasdfasdf
+=======
 // additional change
+>>>>>>> .r85
 //
+<<<<<<< .mine
+//asdfasdf
+//extra comment
+||||||| .r83
+=======
 // Small change 
+>>>>>>> .r85
 //
 //
 //
@@ -34,7 +45,6 @@
 //
 // I'm just going to add some commentary
 // additional change 
-
 // Adding an extra Comment
 // removal is not a good idea
 // Change for collaborator review
