@@ -15,20 +15,15 @@
 // addressing defect
 // Additional comment here implemented a fix - here and here
 //
-<<<<<<< .mine
-||||||| .r83
 // asdfasdfasdfasdffasdfasdfasdf
-=======
 // additional change
->>>>>>> .r85
 //
-<<<<<<< .mine
 //asdfasdf
-//extra comment
-||||||| .r83
-=======
+//
+// some comment for Philips best practice session
+//
+//extra  fix for the review defect
 // Small change 
->>>>>>> .r85
 //
 // Another small change
 //
