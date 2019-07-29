@@ -23,20 +23,18 @@
 // some comment for Philips best practice session
 //
 //extra  fix for the review defect
-// Small change 
+// Small change here to satisfy reviewer
 //
 // Another change here 
+// New comment
 //
-//
-//
-// Small change here again
 //
 // Extra comments
 //
 //
 // More Extra Comments
 //
-// test asdfasdfasdf
+// test asdfasdfasdf change 
 // Donnas Comment
 //
 // I'm just going to add some commentary
