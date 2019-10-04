@@ -6,53 +6,11 @@
  * Module dependencies.
  */
 
-
-/// random change
-//
-// change for the demo - changed for defect
-// new change for pre-commit review
-// fixed for review
-// addressing defect
-// Additional comment here implemented a fix - here and here
-//
-// asdfasdfasdfasdffasdfasdfasdf
-// additional change
-//
-//asdfasdf
-//
-// some comment for Philips best practice session
-//
-//extra  fix for the review defect
-// Small change 
 //
 // Another small change
 //
 //
-//
-//
-// Small change here
-//
-// Extra comments
-//
-//
-// More Extra Comments
-//
-// test asdfasdfasdf
-// Donnas Comment
-//
-// I'm just going to add some commentary
-// additional change 
-// Adding an extra Comment
-// removal is not a good idea
-// Change for collaborator review
-// Additional Change
-//
-// Change for changes sake
-// To demonstrate code review
-// Collab changes
-// random comments here 
-// This is a new branch for collaborator work
-// Comment commen t
+// More comments that need reviewing.
 
 var express = require('express')
   , routes = require('./routes')
@@ -60,10 +18,7 @@ var express = require('express')
   , http = require('http')
   , path = require('path')
   , EmployeeProvider = require('./employeeprovider').EmployeeProvider;
-//Rudy's comment
-// remove
 var app = express();
-// changed and changed back
 app.configure(function(){
   app.set('port', process.env.PORT || 3000);
   app.set('views', __dirname + '/views');
