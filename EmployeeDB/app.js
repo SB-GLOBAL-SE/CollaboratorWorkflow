@@ -9,6 +9,8 @@
 
 /// random change
 //
+// another random change
+//
 // change for the demo - changed for defect
 // new change for pre-commit review
 // fixed for review
@@ -83,6 +85,8 @@ var employeeProvider= new EmployeeProvider('localhost', 27017);
 //Routes
 
 //index
+// Addressing review defect
+//
 app.get('/', function(req, res){
   employeeProvider.findAll(function(error, emps){
       res.render('index', {
