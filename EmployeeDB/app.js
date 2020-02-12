@@ -11,6 +11,9 @@
 //
 //
 //
+// more changes here
+//
+//
 //
 //
 // additional change
@@ -19,15 +22,6 @@
 //
 // some comment for Philips best practice session
 //
-//extra  fix for the review defect
-// Small change 
-//
-// Another small change
-//
-//
-//
-//
-// Small change here
 //
 // Extra comments
 //
