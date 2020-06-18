@@ -9,50 +9,8 @@
 
 /// random change
 //
-// change for the demo - changed for defect
-// new change for pre-commit review
-// fixed for review
-// addressing defect
-// Additional comment here implemented a fix - here and here
+// New changes go here in Defect rectification
 //
-// asdfasdfasdfasdffasdfasdfasdf
-// additional change
-//
-//asdfasdf
-//
-// some comment for Philips best practice session
-//
-//extra  fix for the review defect
-// Small change 
-//
-// Another small change
-//
-//
-//
-//
-// Small change here
-//
-// Extra comments
-//
-//
-// More Extra Comments
-//
-// test asdfasdfasdf
-// Donnas Comment
-//
-// I'm just going to add some commentary
-// additional change 
-// Adding an extra Comment
-// removal is not a good idea
-// Change for collaborator review
-// Additional Change
-//
-// Change for changes sake
-// To demonstrate code review
-// Collab changes
-// random comments here 
-// This is a new branch for collaborator work
-// Comment commen t
 
 var express = require('express')
   , routes = require('./routes')
@@ -78,7 +36,7 @@ app.configure(function(){
   app.use(express.static(path.join(__dirname, 'public')));
 });
 
-// extra
+// extra comment goes here
 // extra comment
 
 app.configure('development', function(){
