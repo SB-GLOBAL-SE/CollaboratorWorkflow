@@ -17,13 +17,9 @@
 //
 //asdfasdf
 //
-// some comment for Philips best practice session
+// some comment for 
 //
-//extra  fix for the review defect
-// Small change 
-//
-// Another small change
-//
+// A subsequent small change
 //
 //
 //
