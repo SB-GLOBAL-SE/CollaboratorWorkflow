@@ -9,11 +9,6 @@
 
 /// random change
 //
-// change for the demo - changed for defect
-// new change for pre-commit review
-// fixed for review
-// addressing defect
-// Additional comment here implemented a fix - here and here
 //
 // asdfasdfasdfasdffasdfasdfasdf
 // additional change
@@ -25,7 +20,7 @@
 //extra  fix for the review defect
 // Small change 
 //
-// Another small change
+// Another small change goes in here
 //
 //
 //
@@ -33,6 +28,8 @@
 // Small change here
 //
 // Extra comments
+//
+// A new comment inserted here
 //
 //
 // More Extra Comments
