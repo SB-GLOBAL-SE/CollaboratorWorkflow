@@ -5,47 +5,31 @@
  * 
  * Module dependencies.
  */
-
+// Introducing new lines in here
 
 /// random change
 //
 //
-// asdfasdfasdfasdffasdfasdfasdf
-// additional change
-//
-//asdfasdf
-//
-// some comment for Philips best practice session
-//
-//
-// Small change 
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-// Small change here
-//
-// Extra comments
 //
 // A new comment inserted here
+//
+//
+//
+//
+//
+//  New lines added
+//
+//
 //
 //
 // More Extra Comments
 //
 // test asdfasdfasdf
-// Donnas Comment
+// Modifying this line
 //
 // I'm just going to add some commentary
 // additional change 
-// Adding an extra Comment
+// Adding an extra Comment and rectifying a defect
 // removal is not a good idea
 // Change for collaborator review
 // Additional Change
