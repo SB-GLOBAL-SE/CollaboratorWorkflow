@@ -18,8 +18,6 @@
 // Additional Change
 //
 // Change for changes sake
-// To demonstrate code review
-// Collab changes
 // random comments here 
 // This is a new branch for collaborator work
 // Comment commen t
