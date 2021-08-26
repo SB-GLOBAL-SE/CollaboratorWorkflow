@@ -13,8 +13,6 @@
 // test asdfasdfasdf
 //
 // I'm just going to add some commentary
-// additional change 
-// Adding an extra Comment and rectifying a defect
 // removal is not a good idea
 // Change for collaborator review
 // Additional Change
