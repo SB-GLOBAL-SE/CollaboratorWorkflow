@@ -14,21 +14,7 @@
 // fixed for review
 // addressing defect
 // Additional comment here implemented a fix - here and here
-//
-<<<<<<< .mine
-||||||| .r83
-// asdfasdfasdfasdffasdfasdfasdf
-=======
-// additional change
->>>>>>> .r85
-//
-<<<<<<< .mine
-//asdfasdf
-//extra comment
-||||||| .r83
-=======
-// Small change 
->>>>>>> .r85
+// Another comment change
 //
 // Another small change
 //
