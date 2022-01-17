@@ -9,23 +9,6 @@
 
 /// random change
 //
-// change for the demo - changed for defect
-// new change for pre-commit review
-// fixed for review
-// addressing defect
-// Additional comment here implemented a fix - here and here
-// Another comment change
-//
-// Another small change
-//
-//
-//
-//
-// Small change here
-//
-// Extra comments
-//
-//
 // More Extra Comments
 //
 // test asdfasdfasdf
